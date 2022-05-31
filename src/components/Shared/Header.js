@@ -1,14 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from './../../img/logo (2).png'
 
 const Header = () => {
     const navItems = 
        <>
-       <li><a>Item 1</a></li> 
-       <li><a>Item 2</a></li>
-       <li><a>Item 3</a></li>
-       <li><a>Item 4</a></li>
-       <li><a>Item 5</a></li>
+       <li><Link to='/'>Home</Link></li> 
+       <li><Link to='/classroom'>Classroom</Link></li>
+       <li><Link to='/about'>About</Link></li>
+       <li><Link to='/login'>Login</Link></li>
        </>
     
     return (
