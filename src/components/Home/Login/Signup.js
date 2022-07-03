@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../.../../../../firebase.init';
+import useToken from '../../../hooks/useToken';
+import Loading from '../../Shared/Loading';
 
 const Signup = () => {
     const [
@@ -13,7 +15,8 @@ const Signup = () => {
 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [token] = useToken(user)
 
     const [userData, setUserData] = useState({
         email: "",
@@ -61,13 +64,13 @@ const Signup = () => {
         }
     }
 
-    if (user) {
+    if (token) {
         navigate('/')
     }
 
     useEffect(() => {
         if (loading) {
-            return <p>Loading</p>
+            return <Loading></Loading>
         }
     }, [])
     useEffect(() => {

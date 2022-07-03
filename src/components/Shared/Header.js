@@ -13,8 +13,11 @@ const Header = () => {
     const navItems = 
        <>
        <li><Link to='/'>Home</Link></li> 
-       <li><Link to='/classroom'>Classroom</Link></li>
-       <li><Link to='/about'>About</Link></li>
+       <li><Link to='/classroom'>Classroom</Link></li>  
+       {
+           user && <li><Link to='/dashboard'>Dashboard</Link></li>
+       }
+       <li><Link to='/contact'>Contact</Link></li>
        {user ?
        <li><a onClick={userLogout}>Logout</a></li>
        :

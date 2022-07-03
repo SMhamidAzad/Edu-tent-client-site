@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../../hooks/useToken';
+import Loading from '../../Shared/Loading';
 import auth from './../../../firebase.init';
 
 const Login = () => {
@@ -19,6 +21,8 @@ const Login = () => {
         emailError: "",
         passwordError: ""
     })
+
+    const [token] = useToken(user)
 
 
     
@@ -60,16 +64,16 @@ const Login = () => {
     let from = location.state?.from?.pathname || "/";
     
     useEffect(() => {
-        if (user) {
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [user,from,navigate])
+    }, [token,from,navigate])
         if (error) {
             console.log(error);
         }
 
         if (loading) {
-            return <p>Loading.....</p>
+            return <Loading></Loading>
         }
     return (
         <div className='flex justify-center'>

@@ -5,9 +5,17 @@ const Banner = () => {
     return (
         <div class="hero min-h-screen bg-base-200">
             <div class="hero-content flex-col lg:flex-row">
-                <img src={classroom} class="max-w-sm" />
+                <img 
+                 data-aos="flip-left"
+                 data-aos-easing="linear"
+                 data-aos-duration="1500"
+                src={classroom} class="max-w-sm" />
                 <div>
-                    <h1 class="text-5xl font-bold">Online Classroom</h1>
+                    <h1 
+                    data-aos="zoom-out-down"
+                    data-aos-easing="linear"
+                    data-aos-duration="1500"
+                    class="text-5xl font-bold">Online Classroom</h1>
                     <p class="py-6">Edu tent is your all-in-one place for teaching and learning. Our easy-to-use and secure tool helps educators manage, measure, and enrich learning experiences.</p>
                     <button class="btn btn-primary">Get Started</button>
                 </div>

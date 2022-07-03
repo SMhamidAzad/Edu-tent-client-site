@@ -1,14 +1,28 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import About from './components/Home/About/About';
 import Classroom from './components/Home/Classroom/Classroom';
+import AllClass from './components/Home/Dashboard/AllClass';
+import AllUser from './components/Home/Dashboard/AllUser';
+import CreateClass from './components/Home/Dashboard/CreateClass';
+import Dashboard from './components/Home/Dashboard/Dashboard';
+import MyProfile from './components/Home/Dashboard/MyProfile';
 import Home from './components/Home/Home/Home';
 import Login from './components/Home/Login/Login';
 import RequireAuth from './components/Home/Login/RequireAuth';
 import Signup from './components/Home/Login/Signup';
 import Header from './components/Shared/Header';
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from 'react';
+import ClassInfo from './components/Home/Classroom/ClassInfo';
+import Contact from './components/Home/Contact/Contact';
+import NotFound from './components/Shared/NotFound';
+
 
 function App() {
+  useEffect(()=>{
+    AOS.init()
+  },[])
   return (
     <div>
       <Header />
@@ -20,10 +34,23 @@ function App() {
           </RequireAuth>
 
         }></Route>
-        <Route path='/about' element={<About></About>}></Route>
+        <Route path='/classinfo/:id' element={
+          <RequireAuth>
+            <ClassInfo></ClassInfo>
+          </RequireAuth>
+
+        }></Route>
+        
+        <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
+          <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route path="allclass" element={<AllClass></AllClass>}></Route>
+          <Route path="alluser" element={<AllUser></AllUser>}></Route>
+          <Route path="createclass" element={<CreateClass></CreateClass>}></Route>  
+        </Route>
+        <Route path='/contact' element={<Contact></Contact>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
-
+        <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
     </div>
   );
